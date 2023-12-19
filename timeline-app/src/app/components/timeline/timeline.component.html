@@ -1,0 +1,151 @@
+<header #header class="bg-indigo-600 fixed left-0 top-0 w-full z-50 p-2">
+  <nav class="mx-auto flex items-center justify-between p-2 lg:px-8">
+
+    <div class="">
+      ??
+    </div>
+
+    <div class=" ">
+
+       <span class="isolate inline-flex rounded-md shadow-sm">
+          <button (click)="timelineService.switchSettings('showPriceChart')" type="button" [ngClass]="timelineService.getSettings('showPriceChart') ? 'bg-gray-700 text-white ring-gray-700':'bg-white text-gray-900 ring-gray-300'" class="relative inline-flex items-center rounded-l-md px-3 py-2 text-sm font-semibold ring-1 ring-inset focus:z-10">Price</button>
+          <button (click)="timelineService.switchSettings('showTVLusd')" type="button" [ngClass]="timelineService.getSettings('showTVLusd') ? 'bg-gray-700 text-white ring-gray-700':'bg-white text-gray-900 ring-gray-300'" class="relative -ml-px inline-flex items-center bg-white px-3 py-2 text-sm font-semibold ring-1 ring-inset focus:z-10">TVL USD</button>
+          <button (click)="timelineService.switchSettings('showTVLada')" type="button" [ngClass]="timelineService.getSettings('showTVLada') ? 'bg-gray-700 text-white ring-gray-700':'bg-white text-gray-900 ring-gray-300'" class="relative -ml-px inline-flex items-center rounded-r-md bg-white px-3 py-2 text-sm font-semibold ring-1 ring-inset focus:z-10">TVL ADA</button>
+       </span>
+
+    </div>
+    <div class="">
+      ??
+    </div>
+  </nav>
+
+  <div class="bg-gray-200 fixed left-0 top-[68px] w-full h-[45px]"></div>
+  <div class="bg-gray-400" style="position: absolute; top: 88px; height: 3px; width: 100%; left: 0;"></div>
+</header>
+
+
+
+
+
+<!--
+<div class="fixed left-0 top-0 w-full bg-red-600 z-50">
+
+  show TVL <span (click)="timelineService.switchSettings('showPriceChart')">{{timelineService.getSettings('showPriceChart')}}</span> <br />
+  show TVL USD <span (click)="timelineService.switchSettings('showTVLusd')">{{timelineService.getSettings('showTVLusd')}}</span> <br />
+  show TVL ADA <span (click)="timelineService.switchSettings('showTVLada')">{{timelineService.getSettings('showTVLada')}}</span> <br />
+
+  <span class="isolate inline-flex rounded-md shadow-sm">
+    <button (click)="timelineService.switchSettings('showPriceChart')" type="button" [ngClass]="timelineService.getSettings('showPriceChart') ? 'bg-gray-700 text-white ring-gray-700':'bg-white text-gray-900 ring-gray-300'" class="relative inline-flex items-center rounded-l-md px-3 py-2 text-sm font-semibold ring-1 ring-inset focus:z-10">Price</button>
+    <button (click)="timelineService.switchSettings('showTVLusd')" type="button" [ngClass]="timelineService.getSettings('showTVLusd') ? 'bg-gray-700 text-white ring-gray-700':'bg-white text-gray-900 ring-gray-300'" class="relative -ml-px inline-flex items-center bg-white px-3 py-2 text-sm font-semibold ring-1 ring-inset focus:z-10">TVL USD</button>
+    <button (click)="timelineService.switchSettings('showTVLada')" type="button" [ngClass]="timelineService.getSettings('showTVLada') ? 'bg-gray-700 text-white ring-gray-700':'bg-white text-gray-900 ring-gray-300'" class="relative -ml-px inline-flex items-center rounded-r-md bg-white px-3 py-2 text-sm font-semibold ring-1 ring-inset focus:z-10">TVL ADA</button>
+  </span>
+</div>
+-->
+
+
+
+<div (wheel)="onWheel($event)" id="container" class="flex whitespace-nowrap h-screen hidescroll" [style.marginTop.px]="headerHeight" [style.height.px]="timelineHeight" *ngIf="timelineHeight">
+    <div class="inline-block text-black relative" id="timeline-wrp" *ngFor="let item of timelineAllData; let i = index">
+
+      <ng-container *ngFor="let months of item['months']">
+        <div class="inline-block">
+
+          <ng-container *ngFor="let days of months['days']">
+
+            <div class="text-center inline-block mr-0.5" [ngClass]="getStyleClass(days)" [class.selected]="isSelected(days)">
+
+
+              <!--
+              <ng-container *ngFor="let ii of days.markersData.markers">
+                <ng-container *ngIf="ii['category'] == 'node-release'">
+                  <div style="position: absolute; z-index: 9999; left: 0; top: 50px; background: red;">
+                    {{ii['data']['name']}}
+                  </div>
+                </ng-container>
+              </ng-container>
+              -->
+
+
+
+              <!-- boxiky -->
+              <div class="boxx" [ngClass]="getBoxClass(days)" *ngIf="timelineService.hasProperty(days, 'markersData.markers') && days.markersData.markers.length > 0">
+
+
+                <!-- papers -->
+                <ng-container *ngIf="timelineService.papersCount(days.markersData.markers) > 1 else papers">
+                  <div class="line-item">
+                    <papers-group [data]="days"></papers-group>
+                  </div>
+                </ng-container>
+                <ng-template #papers>
+                  <ng-container *ngFor="let ii of days.markersData.markers">
+                    <div class="line-item" *ngIf="ii['category'] == 'paper'">
+                      <paper-item [rootData]="days" [data]="ii"></paper-item>
+                    </div>
+                  </ng-container>
+                </ng-template>
+                <!-- papers -->
+
+
+                <!-- ostatne markeri -->
+                <ng-container *ngFor="let ii of days.markersData.markers">
+                  <div class="line-item">
+                    <timeline-item [rootData]="days" [data]="ii"></timeline-item>
+                  </div>
+                </ng-container>
+
+              </div>
+              <!-- // boxiky -->
+
+              <!-- CHART LINE -->
+              <div title="{{days?.markersData?.priceUSD}}" class="relative h-graph" [style.height.px]="timelineHeight - headerHeight - 20">
+
+
+                  <div class="boxx-top">
+                    <ng-container *ngFor="let ii of days.markersData.markers">
+                      <ng-container *ngIf="ii['category'] == 'node-release'">
+                        <div class="relative pos2 tag-{{ii['data']['tag_name_number']}}">
+                          <div class="text-md bg-gray-400 text-white p-0 px-2 rounded-full">
+                            {{ii['data']['tag_name']}}
+                          </div>
+                        </div>
+                      </ng-container>
+                    </ng-container>
+                  </div>
+
+
+                <!-- PRICE --><div *ngIf="timelineService.getSettings('showPriceChart')" class="gr1 z-50 bg-indigo-200 hover:bg-red-900 opacity-100 w-full absolute left-0 bottom-0" [style.height.%]="timelineService.calculatePriceRangePercentage(days)"></div>
+                <!-- USD TVL --><div *ngIf="timelineService.getSettings('showTVLusd')" class="gr2 z-10 bg-purple-200 hover:bg-blue-900 hover:opacity-100 opacity-100 w-full absolute left-0 bottom-0" [style.height.%]="timelineService.calculateTVLRangePercentage(days)"></div>
+                <!-- TVL ADA --><div *ngIf="timelineService.getSettings('showTVLada')" class="gr3 z-30 bg-pink-200 hover:bg-blue-900 hover:opacity-100 opacity-100 w-full absolute left-0 bottom-0" [style.height.%]="timelineService.calculateTVLAdaRangePercentage(days)"></div>
+              </div>
+              <!-- // CHART LINE -->
+
+              <div class="px-0 w-1">
+
+
+                <!--
+                <div class="boxx-top relative">
+                  <ng-container *ngFor="let ii of days.markersData.markers">
+                    <ng-container *ngIf="ii['category'] == 'node-release'">
+                      <div style="background: red; position: absolute; left: 0; top: 0;">
+                        {{ii['data']['name']}}
+                      </div>
+                    </ng-container>
+                  </ng-container>
+                </div>
+                -->
+
+              </div>
+            </div>
+          </ng-container>
+
+          <div class="text-center text-black w-full text-sm px-0 leading-none border-l border-r border-gray-200 {{months['monthName']}}-{{item['yearName']}}">
+            <div class="font-bold px-5 w-full">{{months['monthName']}}</div>
+            {{item['yearName']}}
+          </div>
+        </div>
+      </ng-container>
+
+
+    </div>
+</div>

@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  overflow: hidden;
+}
+
+/* Urobiť posuvník neviditeľným */
+::-webkit-scrollbar {
+  width: 0px;  /* pre Chrome, Safari a Opera */
+  background: transparent;  /* pre Chrome a Safari */
+}
+
+body {
+  scrollbar-width: none;  /* pre Firefox */
+  -ms-overflow-style: none;  /* pre IE and Edge */
+}

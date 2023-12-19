@@ -1,0 +1,62 @@
+<ng-container *ngIf="data['category'] == 'custom-event'">
+
+    <div class="inline-block -ml-4" *ngIf="data['data']['sentiment'] == 'bad'">
+        <div class="flex rounded-full style-{{data['data']['style']}} p-1 px-2 text-white">
+            <div class="mr-1 flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.05 4.575a1.575 1.575 0 10-3.15 0v3m3.15-3v-1.5a1.575 1.575 0 013.15 0v1.5m-3.15 0l.075 5.925m3.075.75V4.575m0 0a1.575 1.575 0 013.15 0V15M6.9 7.575a1.575 1.575 0 10-3.15 0v8.175a6.75 6.75 0 006.75 6.75h2.018a5.25 5.25 0 003.712-1.538l1.732-1.732a5.25 5.25 0 001.538-3.712l.003-2.024a.668.668 0 01.198-.471 1.575 1.575 0 10-2.228-2.228 3.818 3.818 0 00-1.12 2.687M6.9 7.575V12m6.27 4.318A4.49 4.49 0 0116.35 15m.002 0h-.002" />
+                </svg>
+            </div>
+            <div>
+                <h4 class="text-xs font-bold leading-5">{{data['data']['data']['title']}}</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="inline-block" *ngIf="data['data']['sentiment'] == 'bullrun-top'">
+        <div class="m-0 inline-block">
+            <div class="rounded-md style-{{data['data']['style']}} relative -left-[40px] w-[80px] p-2 px-0 text-white text-center">
+                <div>
+                    <div class="whitespace-break-spaces text-xs leading-none font-bold leading-5">
+                        {{data['data']['data']['title']}}
+                        <div class="text-lg">
+                            {{data['data']['data']['year']}}
+                        </div>
+                    </div>
+                    <div class="text-md leading-none">${{data['data']['data']['price']}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</ng-container>
+
+
+
+<!--
+<ng-container *ngIf="data['showTitle']">
+    <div class="inline-block relative -left-[20px]">
+        <div class="flex w-full w-[250px] rounded-[30px] bg-black text-white mb-2 p-2 text-sm leading-none">
+            <div class="">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 h-7 w-7">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
+                </svg>
+            </div>
+            <div class="whitespace-break-spaces text-left">{{data['data']['title']}}</div>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="!data['showTitle']">
+    <div class="box cursor-pointer type-{{data['type']}} style-{{data['data']['style']}}" *ngIf="data['category'] == 'paper'">
+        <div title="{{data['data']['title']}}" class="text-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 ml-1 mt-1">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
+            </svg>
+        </div>
+    </div>
+</ng-container>
+-->
+
+
+

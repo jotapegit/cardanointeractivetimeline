@@ -1,0 +1,29 @@
+.type-dot {
+  border: 2px solid black;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  left: -20px;
+  border-radius: 20px;
+  background: white;
+  color: black;
+}
+
+.style-1 {
+  background: blue;
+  border-color: blue;
+}
+
+.style-2 {
+  background: tomato;
+  border-color: tomato;
+}
+
+.style-3 {
+  background: limegreen;
+  border-color: limegreen;
+}
+
+.box {
+  margin-bottom: 5px;
+}

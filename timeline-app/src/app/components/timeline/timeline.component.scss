@@ -1,0 +1,179 @@
+.h-graph {
+  //height: calc(100vH - 50px);
+  //margin-top: 360px;
+}
+
+.boxx-top {
+  position: absolute;
+  left: 0;
+  top: 13px;
+  display: inline-block;
+  width: auto;
+  font-size: 12px;
+  z-index: 66;
+
+  .tag-1341 {
+    margin-left: 13px !important;
+  }
+
+  .pos2 {
+    top: 0px !important;
+    position: relative;
+    z-index: 50;
+  }
+}
+
+.selected {
+  background: black;
+  position: relative;
+  background: rgb(0,0,0);
+  background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(255,255,255,1) 100%);
+
+  &.style-1 {
+    background: blue;
+  }
+
+  &.style-2 {
+    background: tomato;
+  }
+
+  &.style-3 {
+    background: limegreen;
+  }
+
+  .boxx {
+    position: absolute;
+    left: 0;
+    top: 100px;
+    //background: red;
+    display: inline-block;
+    width: auto;
+    font-size: 12px;
+
+    .line-item {
+      position: relative;
+      z-index: 50;
+      //border: 1px solid red;
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      background: #fff;
+      left: 0;
+      bottom: 20px;
+      height: 100vH;
+      width: 4px;
+    }
+  }
+}
+
+.gr1 {
+  //border-top: 3px solid white;
+}
+
+.gr2 {
+  //border-top: 3px solid white;
+  //background: rgb(255,255,255);
+  //background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(250,10,10,1) 100%);
+}
+
+.gr3 {
+  //border-top: 3px solid white !important;
+  //background: rgb(255,255,255);
+  //background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(90,10,250,1) 100%);
+}
+
+.position-50perc {
+  top: auto !important;
+  bottom: 50%;
+}
+
+.move-right .line-item {
+  left: 37% !important;
+ }
+
+.position-80perc {
+  top: auto !important;
+  bottom: 80%;
+}
+
+.position-70perc {
+  top: auto !important;
+  bottom: 70%;
+}
+
+.position-60perc {
+  top: auto !important;
+  bottom: 60%;
+}
+
+.position-40perc {
+  top: auto !important;
+  bottom: 40%;
+}
+
+.position-30perc {
+  top: auto !important;
+  bottom: 30%;
+}
+
+.position-20perc {
+  top: auto !important;
+  bottom: 10%;
+}
+
+.position-10perc {
+  top: auto !important;
+  bottom: 10%;
+}
+
+.position-top-2 {
+  top: 25px;
+  bottom: auto;
+}
+
+.position-top-3 {
+  top: 50px;
+  bottom: auto;
+}
+
+.position-top-4 {
+  top: 100px !important;
+  bottom: auto !important;
+}
+
+.position-bullrun-2021 {
+  top: 260px !important;
+  bottom: auto !important;
+}
+
+.position-2 {
+  top: auto !important;
+  bottom: 25px;
+}
+
+.position-3 {
+  top: auto !important;
+  bottom: 50px;
+}
+
+.position-4 {
+  top: auto !important;
+  bottom: 100px;
+}
+
+.position-4 {
+  top: auto !important;
+  bottom: 150px;
+}
+
+.position-5 {
+  top: auto !important;
+  bottom: 200px;
+}
+
+.position-6 {
+  top: auto !important;
+  bottom: 250px;
+}
